@@ -1,30 +1,20 @@
-let trafficLightEl1 = document.querySelector('#trafficLight1');
-let trafficLightEl2 = document.querySelector('#trafficLight2');
-let trafficLightEl3 = document.querySelector('#trafficLight3');
+let light = document.querySelectorAll('.trafficLight');
+let index = 0;
 
-function makeGreen() {
-    trafficLightEl3.style.background = ('green');
-    trafficLightEl1.removeEventListener('click', makeGreen);
-    trafficLightEl2.removeEventListener('click', makeGreen);
-    trafficLightEl3.removeEventListener('click', makeGreen);
-    trafficLightEl.addEventListener('click', makeYellow);
+function changeLight() {
+    light[0].style.background = 'black';
+    light[1].style.background = 'black';
+    light[2].style.background = 'black';
+    if (index === 0){
+        light[1].style.background = 'yellow';
+        index = 1;
+    } else if (index === 1){
+        light[2].style.background = 'green';
+        index = 2;
+    } else if (index === 2){
+        light[0].style.background = 'red';
+        index = 0; 
+    }
 
 }
-function makeYellow() {
-    trafficLightEl2.style.background = ('yellow');
-    trafficLightEl.removeEventListener('click', makeYellow);
-    trafficLightEl.addEventListener('click', makeRed);
-}
-function makeRed() {
-    trafficLightEl1.style.background = ('red');
-    trafficLightEl1.removeEventListener('click', makeRed);
-    trafficLightEl2.removeEventListener('click', makeRed);
-    trafficLightEl3.removeEventListener('click', makeRed);
-    trafficLightEl1.addEventListener('click', makeGreen);
-    trafficLightEl2.addEventListener('click', makeGreen);
-    trafficLightEl3.addEventListener('click', makeGreen);
-}
-
-trafficLightEl1.addEventListener('click', makeRed);
-trafficLightEl2.addEventListener('click', makeRed);
-trafficLightEl3.addEventListener('click', makeRed);
+document.querySelector('.trafficLight').addEventListener('click', changeLight);
